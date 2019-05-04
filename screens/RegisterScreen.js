@@ -77,6 +77,7 @@ class RegisterScreen extends Component {
                     color='transparent'
                     long
                     textColor='#12CE9E'
+                    onPress={() => {this.props.navigation.navigate('Login')}}
                   />
             </View>
         );

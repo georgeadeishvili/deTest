@@ -9,3 +9,6 @@ export const USERNAME_CHANGED = 'username_changed';
 export const REGISTER_USER = 'register_user';
 export const REGISTER_USER_SUCCESS = 'register_user_success';
 export const REGISTER_USER_FAIL = 'register_user_fail';
+
+export const SELECT_USER = 'select_user';
+export const USER_USERNAME = 'user_username';

@@ -4,7 +4,8 @@ import {
   PASSWORD_CHANGED,
   LOGIN_USER,
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAIL
+  LOGIN_USER_FAIL,
+  SELECT_USER
 } from './types';
 
 export const emailChanged = (text) => (
@@ -33,9 +34,9 @@ export const loginUser = ({ email, password }, nav) => (
 const loginUserSuccess = (dispatch, user, nav) => {
   dispatch({
     type: LOGIN_USER_SUCCESS,
-    payload: user
+    payload: user,
   });
-  nav.navigate('Main');
+  selectUser(dispatch,user,nav);
 };
 
 const loginUserFail = (dispatch) => {
@@ -43,3 +44,15 @@ const loginUserFail = (dispatch) => {
     type: LOGIN_USER_FAIL
   });
 };
+
+const selectUser = (dispatch, user, nav) => {
+  console.log(user);
+  firebase.database().ref('users/'+ user.user.uid).on('value', (snapshot) => {
+    console.log(snapshot.val())
+    dispatch({
+      type: SELECT_USER,
+      payload: snapshot.val().username
+    })
+  })
+  nav.navigate('Main');
+}

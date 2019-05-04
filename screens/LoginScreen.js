@@ -45,10 +45,11 @@ class LoginScreen extends Component {
                       />
                   </View>
                   <Button
-                    text='Sugn Up Here'
+                    text='Sign Up Here'
                     color='transparent'
                     long
                     textColor='#12CE9E'
+                    onPress={() => {this.props.navigation.navigate('Register')}}
                   />
             </View>
         );

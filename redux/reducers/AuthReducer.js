@@ -3,10 +3,11 @@ import {
   PASSWORD_CHANGED,
   LOGIN_USER,
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAIL
+  LOGIN_USER_FAIL,
+  SELECT_USER
 } from '../actions/types';
 
-const INITIAL_STATE = { email: '', password: '', user: null, error: '', loading: false };
+const INITIAL_STATE = { email: '', password: '', user: null, error: '', loading: false, username: null };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -15,7 +16,9 @@ export default (state = INITIAL_STATE, action) => {
     case PASSWORD_CHANGED:
       return { ...state, password: action.payload };
     case LOGIN_USER:
-      return { ...state, loading: true, error: '' };
+      return { ...state, loading: true, error: '', };
+    case SELECT_USER:
+      return { ...state, ...INITIAL_STATE, username: action.payload};
     case LOGIN_USER_SUCCESS:
       return { ...state, ...INITIAL_STATE, user: action.payload };
     case LOGIN_USER_FAIL:
