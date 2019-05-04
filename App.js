@@ -19,7 +19,10 @@ export default class App extends React.Component {
         apiKey: "AIzaSyDGsQ1mabyFYuiYvQGnV8ekQBNlS9I8LB0",
         authDomain: "gtest-c71a2.firebaseapp.com",
         databaseURL: "https://gtest-c71a2.firebaseio.com",
+        projectId: "gtest-c71a2",
         storageBucket: "gtest-c71a2.appspot.com",
+        messagingSenderId: "873425740484",
+        appId: "1:873425740484:web:0f4b055703ce818f"
       };
       firebase.initializeApp(config);
 

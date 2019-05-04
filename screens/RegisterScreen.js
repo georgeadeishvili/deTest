@@ -29,8 +29,8 @@ class RegisterScreen extends Component {
     }
 
     onButtonPress() {
-        const { email, password, rePassword } = this.props;
-        this.props.registerUser({ email, password, rePassword },this.props.navigation);
+        const { email, password, username } = this.props;
+        this.props.registerUser({ email, password, username },this.props.navigation);
     }
 
     render() {

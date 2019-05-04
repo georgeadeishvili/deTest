@@ -37,22 +37,23 @@ export const regRePasswordChanged = (text) => (
   }
 );
 
-export const registerUser = ({ email, password, rePassword }, nav) => {
-    (password === rePassword) && (
-  (dispatch) => {
+export const registerUser = ({ email, password, username }, nav) => dispatch => {
     dispatch({ type: REGISTER_USER });
     firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(user => loginUserSuccess(dispatch, user, nav))
-      .catch(() => loginUserFail(dispatch));
-  })
+      .then(user => registerUserSuccess(dispatch, user, username, nav))
+      .catch(() => registerUserFail(dispatch));
 };
 
-const registerUserSuccess = (dispatch, user, nav) => {
-  dispatch({
-    type: REGISTER_USER_SUCCESS,
-    payload: user
-  });
-  nav.navigate('Login');
+const registerUserSuccess = (dispatch, user, username, nav) => {
+    firebase.database().ref('users/'+ user.user.uid).set({ username })
+      .then(() => {
+        dispatch({
+          type: REGISTER_USER_SUCCESS,
+          payload: user
+        });
+        nav.navigate('Login');
+      })
+      .catch((error) => {console.log(error)})
 };
 
 const registerUserFail = (dispatch) => {
