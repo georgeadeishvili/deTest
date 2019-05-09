@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Dimensions, Image } from 'react-native';
+import { View, Text, Dimensions, Image, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import {
     usernameChanged,
@@ -35,53 +35,69 @@ class RegisterScreen extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <Image source={require('../assets/images/logo.png')} style={{width: Dimensions.get('window').width}} />
-                <View style={styles.subContaiener}>
-                    <Input
-                        placeholder='Pick your username'
-                        label='USERNAME'
-                        onChangeText={this.onUsernameChange.bind(this)}
-                        value={this.props.username}
-                     />
-                     <Input
-                        placeholder='Enter your Email'
-                        label='EMAIL'
-                        onChangeText={this.onEmailChange.bind(this)}
-                        value={this.props.email}
-                     />
-                     <Input
-                         placeholder='Enter Password'
-                         label='PASSWORD'
-                         secureTextEntry
-                         onChangeText={this.onPasswordChange.bind(this)}
-                         value={this.props.password}
-                      />
-                      <Input
-                          placeholder='Re-enter Password'
-                          label='RE-PASSWORD'
-                          secureTextEntry
-                          onChangeText={this.onRePasswordChange.bind(this)}
-                          value={this.props.rePassword}
-                       />
-                      <Button
-                        text='Register'
-                        color='#12CE9E'
-                        long
-                        round
-                        textColor='white'
-                        onPress={this.onButtonPress.bind(this)}
-                      />
-                  </View>
-                  <Button
-                    text='Have an account? Login here'
-                    color='transparent'
-                    long
-                    round
-                    textColor='#12CE9E'
-                    onPress={() => {this.props.navigation.navigate('Login')}}
-                  />
-            </View>
+          <View style={styles.container}>
+            <KeyboardAvoidingView
+              behavior="position"
+              contentContainerStyle={{
+                width: Dimensions.get("window").width,
+                height: "70%"
+              }}
+            >
+              <Image
+                source={require("../assets/images/logo.png")}
+                style={{
+                  width: Dimensions.get("window").width,
+                  marginBottom: 20
+                }}
+              />
+              <View style={styles.subContaiener}>
+                <Input
+                  placeholder="Pick your username"
+                  label="USERNAME"
+                  onChangeText={this.onUsernameChange.bind(this)}
+                  value={this.props.username}
+                />
+                <Input
+                  placeholder="Enter your Email"
+                  label="EMAIL"
+                  onChangeText={this.onEmailChange.bind(this)}
+                  value={this.props.email}
+                />
+                <Input
+                  placeholder="Enter Password"
+                  label="PASSWORD"
+                  secureTextEntry
+                  onChangeText={this.onPasswordChange.bind(this)}
+                  value={this.props.password}
+                />
+                <Input
+                  placeholder="Re-enter Password"
+                  label="RE-PASSWORD"
+                  secureTextEntry
+                  onChangeText={this.onRePasswordChange.bind(this)}
+                  value={this.props.rePassword}
+                />
+                <Button
+                  text="Register"
+                  color="#12CE9E"
+                  long
+                  round
+                  textColor="white"
+                  onPress={this.onButtonPress.bind(this)}
+                />
+              </View>
+            </KeyboardAvoidingView>
+            <Button
+              text="Have an account? Login here"
+              color="transparent"
+              long
+              round
+              textColor="#12CE9E"
+              onPress={() => {
+                this.props.navigation.navigate("Login");
+              }}
+            />
+          </View>
         );
     }
 }

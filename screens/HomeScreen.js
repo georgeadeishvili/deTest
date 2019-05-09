@@ -42,16 +42,15 @@ class HomeScreen extends React.Component {
   render() {
     
     const { popularMovies } = this.props;
-    console.log(popularMovies);
   if (this.state.isLoading) {return <View />} else {
     return (
       <View style={styles.container}>
-        <View style={{ borderRadius:13, padding:5, backgroundColor:'#51F4AD', justifyContent:'center', alignItems:'center', alignSelf:'center'}}>
+        <View style={{ borderRadius:13, padding:5, backgroundColor:'#51F4AD', justifyContent:'center', alignItems:'center', alignSelf:'center', marginTop:40, marginBottom:10}}>
           <Text style={{color:'white'}}>Movies</Text>
         </View>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           {popularMovies && popularMovies.map((item, i) => {
-            return (<Box key={i} name={item.title_en} image={item.poster} genre={`${item.data_date}-${item.release_date}`} rating={item.imdb} />)
+            return (<Box key={i} name={item.title_en} image={item.poster} genre={`${item.data_date}-${item.release_date}`} rating={item.imdb} duration={item.duration} />)
           })}
         </ScrollView>
       </View>

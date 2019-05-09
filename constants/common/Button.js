@@ -25,6 +25,7 @@ const styles = {
     borderColor: 'transparent',
     marginLeft: 5,
     marginRight: 5,
+    marginTop: 10
   },
   textStyle: {
     alignSelf: 'center',

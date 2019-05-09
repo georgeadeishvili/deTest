@@ -54,7 +54,8 @@ const selectUser = (dispatch, user, nav) => {
     console.log(snapshot.val())
     dispatch({
       type: SELECT_USER,
-      payload: snapshot.val().username
+      payload: snapshot.val().username, 
+      payloadi:user.user.email
     })
   })
   nav.navigate('Main');

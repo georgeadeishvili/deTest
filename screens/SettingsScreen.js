@@ -16,6 +16,8 @@ class SettingsScreen extends React.Component {
 
   render() {
     console.log(this.props.username)
+    console.log(this.props.email)
+    console.log(this.props.auth)
 
       const { container, upContainer, circleContainer, circleText, descContainer, mailContainer, btnStyle, bottomContainer } = styles;
     return (
@@ -41,7 +43,7 @@ class SettingsScreen extends React.Component {
                   fontWeight: "bold"
                 }}
               >
-                contact@systemcorp.ai
+                {this.props.email}
               </Text>
             </View>
           </View>

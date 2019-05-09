@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Dimensions, Image } from 'react-native';
+import { View, Text, Dimensions, Image, KeyboardAvoidingView } from 'react-native';
 import { connect } from "react-redux";
 import {
     oldPasswordEntered,
@@ -22,41 +22,49 @@ class ResetScreen extends Component {
 
     render() {
         return (
-          <View style={styles.container}>
-            <Image
-              source={require("../assets/images/logo.png")}
-              style={{ width: Dimensions.get("window").width }}
-            />
-            <View style={styles.subContaiener}>
-              <Input
-                placeholder="******"
-                label="Old Password"
-                secureTextEntry
-                onChangeText={this.onOldPasswordChange.bind(this)}
-                value={this.props.password}
+          <KeyboardAvoidingView
+            behavior="position"
+            contentContainerStyle={{
+              width: Dimensions.get("window").width,
+              height: '100%'
+            }}
+          >
+            <View style={styles.container}>
+              <Image
+                source={require("../assets/images/logo.png")}
+                style={{ width: Dimensions.get("window").width }}
               />
-              <Input
-                placeholder="******"
-                label="New Password"
-                secureTextEntry
-                onChangeText={this.onNewPasswordChange.bind(this)}
-                value={this.props.newPassword}
-              />
-              <Input
-                placeholder="******"
-                label="Verify New Password"
-                secureTextEntry
+              <View style={styles.subContaiener}>
+                <Input
+                  placeholder="******"
+                  label="Old Password"
+                  secureTextEntry
+                  onChangeText={this.onOldPasswordChange.bind(this)}
+                  value={this.props.password}
+                />
+                <Input
+                  placeholder="******"
+                  label="New Password"
+                  secureTextEntry
+                  onChangeText={this.onNewPasswordChange.bind(this)}
+                  value={this.props.newPassword}
+                />
+                <Input
+                  placeholder="******"
+                  label="Verify New Password"
+                  secureTextEntry
+                />
+              </View>
+              <Button
+                text="Reset Password"
+                color="#12CE9E"
+                long
+                round
+                textColor="white"
+                onPress={this.onButtonPressed.bind(this)}
               />
             </View>
-            <Button
-              text="Reset Password"
-              color="#12CE9E"
-              long
-              round
-              textColor="white"
-              onPress={this.onButtonPressed.bind(this)}
-            />
-          </View>
+          </KeyboardAvoidingView>
         );
     }
 }

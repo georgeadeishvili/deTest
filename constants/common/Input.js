@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
   },
   containerStyle: {
       width: Width * 0.85,
-      alignSelf: 'center'
+      alignSelf: 'center',
+      marginTop:10
    }
 });
 const shadowStyle = {
