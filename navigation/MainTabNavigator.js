@@ -1,28 +1,29 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import ResetScreen from '../screens/ResetScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
 });
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+  tabBarLabel: "Home",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+        Platform.OS === "ios"
+          ? "ios-home"
+          : "md-home"
       }
     />
-  ),
+  )
 };
 
 const LinksStack = createStackNavigator({
@@ -41,6 +42,7 @@ LinksStack.navigationOptions = {
 
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
+  Reset: ResetScreen
 });
 
 SettingsStack.navigationOptions = {
@@ -53,8 +55,16 @@ SettingsStack.navigationOptions = {
   ),
 };
 
-export default createBottomTabNavigator({
+const TabNavigator = createAppContainer(createBottomTabNavigator({
   HomeStack,
-  LinksStack,
-  SettingsStack,
-});
+  SettingsStack
+}));
+
+
+
+export default class TabNavigation extends React.Component {
+ render() {
+   return (
+      <TabNavigator screenProps={{ nav: this.props.navigation}} /> );
+ }
+}

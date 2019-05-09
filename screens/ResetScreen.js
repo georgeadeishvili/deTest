@@ -1,36 +1,62 @@
 import React, { Component } from 'react';
 import { View, Text, Dimensions, Image } from 'react-native';
+import { connect } from "react-redux";
+import {
+    oldPasswordEntered,
+    newPasswordEntered,
+    changePassword
+} from '../redux/actions';
 import { Input, Button } from '../constants/common';
 
 class ResetScreen extends Component {
+    onOldPasswordChange(text) {
+        this.props.oldPasswordEntered(text)
+    }
+    onNewPasswordChange(text) {
+        this.props.newPasswordEntered(text)
+    }
+    onButtonPressed() {
+        const { password, newPassword } = this.props;
+        this.props.changePassword({password, newPassword}, this.props.navigation);
+    }
+
     render() {
         return (
-            <View style={styles.container}>
-                <Image source={require('../assets/images/logo.png')} style={{width: Dimensions.get('window').width}} />
-                <View style={styles.subContaiener}>
-                    <Input
-                        placeholder='******'
-                        label='Old Password'
-                        secureTextEntry
-                     />
-                     <Input
-                         placeholder='******'
-                         label='New Password'
-                         secureTextEntry
-                      />
-                      <Input
-                          placeholder='******'
-                          label='Verify New Password'
-                          secureTextEntry
-                       />
-                  </View>
-                  <Button
-                    text='Reset Password'
-                    color='#12CE9E'
-                    long
-                    textColor='white'
-                  />
+          <View style={styles.container}>
+            <Image
+              source={require("../assets/images/logo.png")}
+              style={{ width: Dimensions.get("window").width }}
+            />
+            <View style={styles.subContaiener}>
+              <Input
+                placeholder="******"
+                label="Old Password"
+                secureTextEntry
+                onChangeText={this.onOldPasswordChange.bind(this)}
+                value={this.props.password}
+              />
+              <Input
+                placeholder="******"
+                label="New Password"
+                secureTextEntry
+                onChangeText={this.onNewPasswordChange.bind(this)}
+                value={this.props.newPassword}
+              />
+              <Input
+                placeholder="******"
+                label="Verify New Password"
+                secureTextEntry
+              />
             </View>
+            <Button
+              text="Reset Password"
+              color="#12CE9E"
+              long
+              round
+              textColor="white"
+              onPress={this.onButtonPressed.bind(this)}
+            />
+          </View>
         );
     }
 }
@@ -45,9 +71,15 @@ const styles = {
         alignItems: 'center'
     },
     subContaiener: {
-        height: '50%',
+        height: '35%',
         justifyContent:'space-between'
     }
 }
 
-export { ResetScreen };
+const mapStateToProps = state => {
+  const { password, newPassword, error, loading } = state.res;
+
+  return { password, newPassword, error, loading };
+};
+
+export default connect(mapStateToProps, {oldPasswordEntered, newPasswordEntered, changePassword})(ResetScreen);

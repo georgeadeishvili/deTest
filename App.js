@@ -25,6 +25,7 @@ export default class App extends React.Component {
         appId: "1:873425740484:web:0f4b055703ce818f"
       };
       firebase.initializeApp(config);
+      console.disableYellowBox = true;
 
   }
 

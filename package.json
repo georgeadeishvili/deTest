@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
+    "axios": "^0.18.0",
     "expo": "^32.0.0",
     "expo-react-native-shadow": "^1.0.3",
     "firebase": "^5.11.0",

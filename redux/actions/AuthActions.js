@@ -5,7 +5,10 @@ import {
   LOGIN_USER,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
-  SELECT_USER
+  SELECT_USER,
+  LOGOUT_USER,
+  LOGOUT_USER_FAIL,
+  LOGOUT_USER_SUCCESS
 } from './types';
 
 export const emailChanged = (text) => (
@@ -55,4 +58,29 @@ const selectUser = (dispatch, user, nav) => {
     })
   })
   nav.navigate('Main');
+}
+
+export const logoutUser = (nav) => (
+  (dispatch) => {
+                  dispatch({ type: LOGOUT_USER });
+                  firebase
+                    .auth()
+                    .signOut().then(() =>
+                      logoutUserSuccess(dispatch, nav)
+                    )
+                    .catch(() => logoutUserFail(dispatch));
+                }
+)
+
+const logoutUserSuccess = (dispatch, nav) => {
+  dispatch({
+    type: LOGOUT_USER_SUCCESS
+  })
+  nav.navigate('Login');
+}
+
+const logoutUserFail = (dispatch) => {
+  dispatch({
+    type: LOGOUT_USER_FAIL
+  })
 }

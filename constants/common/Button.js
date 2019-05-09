@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Text, TouchableOpacity, Dimensions } from 'react-native';
 
-const Button = ({ onPress, text, color, long, textColor }) => (
+const Button = ({ onPress, text, color, long, textColor, round }) => (
   <TouchableOpacity onPress={ onPress } style={
       [
           styles.buttonStyle,
           {
               backgroundColor: color,
               width: (long) ? (Dimensions.get('window').width * 0.85) : (Dimensions.get('window').width * 0.85 / 2),
-              borderRadius: (long) ? (30) : (6)
+              borderRadius: (round) ? (30) : (6)
           }
       ]
   }>

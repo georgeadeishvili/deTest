@@ -40,6 +40,7 @@ class LoginScreen extends Component {
                         text='Log In'
                         color='#12CE9E'
                         long
+                        round
                         textColor='white'
                         onPress={this.onButtonPress.bind(this)}
                       />
@@ -48,6 +49,7 @@ class LoginScreen extends Component {
                     text='Sign Up Here'
                     color='transparent'
                     long
+                    round
                     textColor='#12CE9E'
                     onPress={() => {this.props.navigation.navigate('Register')}}
                   />

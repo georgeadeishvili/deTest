@@ -68,6 +68,7 @@ class RegisterScreen extends Component {
                         text='Register'
                         color='#12CE9E'
                         long
+                        round
                         textColor='white'
                         onPress={this.onButtonPress.bind(this)}
                       />
@@ -76,6 +77,7 @@ class RegisterScreen extends Component {
                     text='Have an account? Login here'
                     color='transparent'
                     long
+                    round
                     textColor='#12CE9E'
                     onPress={() => {this.props.navigation.navigate('Login')}}
                   />
